@@ -6,6 +6,12 @@ const Routing: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
+    path: 'items',
+    loadChildren: () => import('./item/item.module').then((m) => m.ItemModule),
+  },
+
+  // Template pages
+  {
     path: 'builder',
     loadChildren: () => import('./builder/builder.module').then((m) => m.BuilderModule),
   },
