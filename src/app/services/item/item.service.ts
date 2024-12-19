@@ -35,8 +35,8 @@ export class ItemService {
     return this.http.put<ApiResponse<Item>>(`${this.baseUrl}/${id}`, body);
   }
 
-  deleteItem(id: string): Observable<ApiResponse<Item>> {
-    return this.http.delete<ApiResponse<Item>>(`${this.baseUrl}/${id}`);
+  deleteItem(id: string): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.baseUrl}/${id}`);
   }
 }
 

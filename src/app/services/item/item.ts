@@ -2,11 +2,13 @@ export interface Item {
   id: string;
   name: string;
   description?: string;
-  photo?: string;
+  image?: string;
   defaultRentRate?: number;
   defaultSalePrice?: number;
   isSet: boolean;
   itemLines?: ItemLine[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ItemLine {

@@ -5,17 +5,21 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
+  styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
   @Input() public modalConfig: ModalConfig;
   @ViewChild('modal') private modalContent: TemplateRef<ModalComponent>;
   private modalRef: NgbModalRef;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) { }
 
   open(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      this.modalRef = this.modalService.open(this.modalContent);
+      this.modalRef = this.modalService.open(this.modalContent, { 
+        centered: true,
+        size: this.modalConfig.size
+       });
       this.modalRef.result.then(resolve, resolve);
     });
   }

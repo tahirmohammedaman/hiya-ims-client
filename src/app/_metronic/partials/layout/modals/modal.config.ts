@@ -10,4 +10,6 @@ export interface ModalConfig {
   disableDismissButton?(): boolean;
   hideCloseButton?(): boolean;
   hideDismissButton?(): boolean;
+
+  size?: 'sm' | 'md' | 'lg' | 'xl' | string;
 }
