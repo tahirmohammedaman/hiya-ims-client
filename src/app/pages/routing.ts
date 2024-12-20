@@ -9,6 +9,10 @@ const Routing: Routes = [
     path: 'items',
     loadChildren: () => import('./item/item.module').then((m) => m.ItemModule),
   },
+  {
+    path: 'clients',
+    loadChildren: () => import('./client/client.module').then((m) => m.ClientModule),
+  },
 
   // Template pages
   {

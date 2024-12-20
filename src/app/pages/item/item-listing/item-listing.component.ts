@@ -64,7 +64,10 @@ export class ItemListingComponent {
           this.items = res.data;
           this.cdr.detectChanges();
         }
-      }
+      },
+      error: (err) => {
+        this.dialogService.showError(err.error.message);
+      },
     });
   }
 
@@ -84,6 +87,10 @@ export class ItemListingComponent {
       ]),
     });
 
+    this.loadLookupItems();
+  }
+
+  loadLookupItems(): void {
     this.lookupService.getItems('unit').subscribe({
       next: (res) => {
         if (res.data) {
@@ -204,6 +211,7 @@ export class ItemListingComponent {
     operation.subscribe({
       next: (res: ApiResponse<Item>) => {
         this.loadItems();
+        this.loadLookupItems();
         this.closeModal();
         this.resetForm();
         this.dialogService.showSuccess(res.message);
@@ -220,7 +228,6 @@ export class ItemListingComponent {
   }
 
   confirmDelete(id: string): void {
-    this.confirmLoading$.next(true);
     this.dialogService.showConfirm({
       title: 'Are you sure you want to delete this item?',
       onConfirm: () => this.deleteItem(id),
@@ -234,6 +241,7 @@ export class ItemListingComponent {
       next: (res: ApiResponse) => {
         this.dialogService.showSuccess(res.message);
         this.loadItems();
+        this.loadLookupItems();
       },
       error: (err) => {
         this.dialogService.showError(err.error.message);
